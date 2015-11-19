@@ -1,13 +1,21 @@
 source 'https://rubygems.org'
+
 gem 'rails', '4.2.4'
 gem 'rails-api'
-gem 'spring', :group => :development
+
 gem 'sqlite3'
-gem 'pry-rails', :group => :development
-gem 'rspec-rails', '~> 3.0', :group => [:development, :test]
-gem 'factory_girl_rails', group: [:development, :test]
 gem 'database_cleaner', group: :test
-gem 'faker', group: [:development, :test]
+
+group :development do
+  gem 'spring', group: :development
+  gem 'pry-rails', group: :development
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'
+  gem 'faker'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
