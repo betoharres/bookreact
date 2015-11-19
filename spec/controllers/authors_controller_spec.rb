@@ -24,11 +24,11 @@ RSpec.describe AuthorsController, type: :controller do
   # Author. As you add validations to Author, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {name: Faker::Name.name, age: Faker::Number.digit}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {name: nil, age: Faker::Number.digit}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -72,25 +72,20 @@ RSpec.describe AuthorsController, type: :controller do
         post :create, {:author => invalid_attributes}, valid_session
         expect(assigns(:author)).to be_a_new(Author)
       end
-
-      it "re-renders the 'new' template" do
-        post :create, {:author => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
     end
   end
 
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {name: Faker::Name.name}
       }
 
       it "updates the requested author" do
         author = Author.create! valid_attributes
         put :update, {:id => author.to_param, :author => new_attributes}, valid_session
         author.reload
-        skip("Add assertions for updated state")
+        expect(author.name).to eq(new_attributes[:name])
       end
 
       it "assigns the requested author as @author" do
@@ -105,12 +100,6 @@ RSpec.describe AuthorsController, type: :controller do
         author = Author.create! valid_attributes
         put :update, {:id => author.to_param, :author => invalid_attributes}, valid_session
         expect(assigns(:author)).to eq(author)
-      end
-
-      it "re-renders the 'edit' template" do
-        author = Author.create! valid_attributes
-        put :update, {:id => author.to_param, :author => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
