@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 20151119154421) do
   end
 
   create_table "books", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",        null: false
     t.datetime "publish_date"
     t.string   "isbn"
-    t.integer  "author_id"
-    t.integer  "tag_id"
+    t.integer  "author_id",    null: false
+    t.integer  "tag_id",       null: false
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
