@@ -7,7 +7,7 @@ gem 'pry-rails', :group => :development
 gem 'rspec-rails', '~> 3.0', :group => [:development, :test]
 gem 'factory_girl_rails', group: [:development, :test]
 gem 'database_cleaner', group: :test
-gem 'faker', group: :development
+gem 'faker', group: [:development, :test]
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
