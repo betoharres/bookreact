@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :tag do
-    name "MyString"
+    name Faker::App.name
   end
-
 end
