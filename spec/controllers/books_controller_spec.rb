@@ -52,21 +52,6 @@ RSpec.describe BooksController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new book as @book" do
-      get :new, {}, valid_session
-      expect(assigns(:book)).to be_a_new(Book)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested book as @book" do
-      book = Book.create! valid_attributes
-      get :edit, {:id => book.to_param}, valid_session
-      expect(assigns(:book)).to eq(book)
-    end
-  end
-
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Book" do
@@ -79,11 +64,6 @@ RSpec.describe BooksController, type: :controller do
         post :create, {:book => valid_attributes}, valid_session
         expect(assigns(:book)).to be_a(Book)
         expect(assigns(:book)).to be_persisted
-      end
-
-      it "redirects to the created book" do
-        post :create, {:book => valid_attributes}, valid_session
-        expect(response).to redirect_to(Book.last)
       end
     end
 
@@ -118,12 +98,6 @@ RSpec.describe BooksController, type: :controller do
         put :update, {:id => book.to_param, :book => valid_attributes}, valid_session
         expect(assigns(:book)).to eq(book)
       end
-
-      it "redirects to the book" do
-        book = Book.create! valid_attributes
-        put :update, {:id => book.to_param, :book => valid_attributes}, valid_session
-        expect(response).to redirect_to(book)
-      end
     end
 
     context "with invalid params" do
@@ -147,12 +121,6 @@ RSpec.describe BooksController, type: :controller do
       expect {
         delete :destroy, {:id => book.to_param}, valid_session
       }.to change(Book, :count).by(-1)
-    end
-
-    it "redirects to the books list" do
-      book = Book.create! valid_attributes
-      delete :destroy, {:id => book.to_param}, valid_session
-      expect(response).to redirect_to(books_url)
     end
   end
 

@@ -52,21 +52,6 @@ RSpec.describe TagsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new tag as @tag" do
-      get :new, {}, valid_session
-      expect(assigns(:tag)).to be_a_new(Tag)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested tag as @tag" do
-      tag = Tag.create! valid_attributes
-      get :edit, {:id => tag.to_param}, valid_session
-      expect(assigns(:tag)).to eq(tag)
-    end
-  end
-
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Tag" do
@@ -79,11 +64,6 @@ RSpec.describe TagsController, type: :controller do
         post :create, {:tag => valid_attributes}, valid_session
         expect(assigns(:tag)).to be_a(Tag)
         expect(assigns(:tag)).to be_persisted
-      end
-
-      it "redirects to the created tag" do
-        post :create, {:tag => valid_attributes}, valid_session
-        expect(response).to redirect_to(Tag.last)
       end
     end
 
@@ -118,12 +98,6 @@ RSpec.describe TagsController, type: :controller do
         put :update, {:id => tag.to_param, :tag => valid_attributes}, valid_session
         expect(assigns(:tag)).to eq(tag)
       end
-
-      it "redirects to the tag" do
-        tag = Tag.create! valid_attributes
-        put :update, {:id => tag.to_param, :tag => valid_attributes}, valid_session
-        expect(response).to redirect_to(tag)
-      end
     end
 
     context "with invalid params" do
@@ -147,12 +121,6 @@ RSpec.describe TagsController, type: :controller do
       expect {
         delete :destroy, {:id => tag.to_param}, valid_session
       }.to change(Tag, :count).by(-1)
-    end
-
-    it "redirects to the tags list" do
-      tag = Tag.create! valid_attributes
-      delete :destroy, {:id => tag.to_param}, valid_session
-      expect(response).to redirect_to(tags_url)
     end
   end
 

@@ -52,21 +52,6 @@ RSpec.describe AuthorsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new author as @author" do
-      get :new, {}, valid_session
-      expect(assigns(:author)).to be_a_new(Author)
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested author as @author" do
-      author = Author.create! valid_attributes
-      get :edit, {:id => author.to_param}, valid_session
-      expect(assigns(:author)).to eq(author)
-    end
-  end
-
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Author" do
@@ -79,11 +64,6 @@ RSpec.describe AuthorsController, type: :controller do
         post :create, {:author => valid_attributes}, valid_session
         expect(assigns(:author)).to be_a(Author)
         expect(assigns(:author)).to be_persisted
-      end
-
-      it "redirects to the created author" do
-        post :create, {:author => valid_attributes}, valid_session
-        expect(response).to redirect_to(Author.last)
       end
     end
 
@@ -118,12 +98,6 @@ RSpec.describe AuthorsController, type: :controller do
         put :update, {:id => author.to_param, :author => valid_attributes}, valid_session
         expect(assigns(:author)).to eq(author)
       end
-
-      it "redirects to the author" do
-        author = Author.create! valid_attributes
-        put :update, {:id => author.to_param, :author => valid_attributes}, valid_session
-        expect(response).to redirect_to(author)
-      end
     end
 
     context "with invalid params" do
@@ -147,12 +121,6 @@ RSpec.describe AuthorsController, type: :controller do
       expect {
         delete :destroy, {:id => author.to_param}, valid_session
       }.to change(Author, :count).by(-1)
-    end
-
-    it "redirects to the authors list" do
-      author = Author.create! valid_attributes
-      delete :destroy, {:id => author.to_param}, valid_session
-      expect(response).to redirect_to(authors_url)
     end
   end
 
