@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :books, except: [:new, :edit]
   resources :tags, except: [:new, :edit]
   resources :authors, except: [:new, :edit]
   # The priority is based upon order of creation: first created -> highest priority.
