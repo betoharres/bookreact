@@ -4,7 +4,7 @@ FactoryGirl.define do
     publish_date Faker::Date.between(
       30.years.ago, Date.today
     )
-    isbn Faker::Code.isbn
+    isbn Faker::Code.isbn(13)
     author
     tag
   end
