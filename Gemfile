@@ -5,6 +5,7 @@ gem 'rails-api'
 
 gem 'sqlite3'
 gem 'database_cleaner', group: :test
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development do
   gem 'spring', group: :development
